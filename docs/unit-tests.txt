@@ -1,0 +1,26 @@
+test_case_sensitive_file_paths (test_check_catalog.CatalogTests.test_case_sensitive_file_paths) ... ok
+test_duplicate_anchor (test_check_catalog.CatalogTests.test_duplicate_anchor) ... ok
+test_duplicate_category (test_check_catalog.CatalogTests.test_duplicate_category) ... ok
+test_duplicate_url (test_check_catalog.CatalogTests.test_duplicate_url) ... ok
+test_empty_category (test_check_catalog.CatalogTests.test_empty_category) ... ok
+test_empty_description (test_check_catalog.CatalogTests.test_empty_description) ... ok
+test_entry_without_category (test_check_catalog.CatalogTests.test_entry_without_category) ... ok
+test_existing_local_file (test_check_catalog.CatalogTests.test_existing_local_file) ... ok
+test_ignore_fenced_examples (test_check_catalog.CatalogTests.test_ignore_fenced_examples) ... ok
+test_local_file_fragment (test_check_catalog.CatalogTests.test_local_file_fragment) ... ok
+test_missing_anchor (test_check_catalog.CatalogTests.test_missing_anchor) ... ok
+test_missing_local_file (test_check_catalog.CatalogTests.test_missing_local_file) ... ok
+test_missing_marker (test_check_catalog.CatalogTests.test_missing_marker) ... ok
+test_no_entries (test_check_catalog.CatalogTests.test_no_entries) ... ok
+test_path_traversal (test_check_catalog.CatalogTests.test_path_traversal) ... ok
+test_reject_embedded_credentials (test_check_catalog.CatalogTests.test_reject_embedded_credentials) ... ok
+test_repeated_marker (test_check_catalog.CatalogTests.test_repeated_marker) ... ok
+test_require_https (test_check_catalog.CatalogTests.test_require_https) ... ok
+test_reversed_markers (test_check_catalog.CatalogTests.test_reversed_markers) ... ok
+test_unknown_type (test_check_catalog.CatalogTests.test_unknown_type) ... ok
+test_valid (test_check_catalog.CatalogTests.test_valid) ... ok
+
+----------------------------------------------------------------------
+Ran 21 tests in 0.006s
+
+OK

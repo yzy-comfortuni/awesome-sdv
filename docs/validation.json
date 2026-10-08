@@ -1,0 +1,59 @@
+{
+  "review_date": "2026-10-08",
+  "readme_source_commit": "190ee34869fa0698a5dbeee95ad186a485e79aa9",
+  "readme_git_blob_sha1": "2348b9af05249ee2591cd07cb6453a33cf581259",
+  "readme_bytes": 25972,
+  "readme_matches_remote_tree_blob": true,
+  "python_version": "3.13.5",
+  "catalog_check": {
+    "ok": true,
+    "resource_count": 101,
+    "category_count": 19,
+    "types": {
+      "商业": 8,
+      "开源": 62,
+      "文档": 4,
+      "标准": 14,
+      "清单": 9,
+      "生态": 4
+    },
+    "categories": {
+      "架构与生态": 4,
+      "整车软件平台与车载 Linux": 6,
+      "MCU、区域控制器与实时系统": 5,
+      "AUTOSAR 与接口建模": 3,
+      "隔离、虚拟化与混合关键性": 4,
+      "服务通信与进程间通信": 8,
+      "车辆数据、API 与应用开发": 6,
+      "CAN、以太网与时间同步": 7,
+      "诊断、日志、测量与标定": 7,
+      "OTA 与软件更新安全": 5,
+      "车端编排与车云协同": 4,
+      "虚拟 ECU、SIL/HIL 与联合仿真": 7,
+      "构建、软件物料清单与供应链": 3,
+      "功能安全、网络安全与开发过程": 5,
+      "座舱接口与嵌入式 HMI": 2,
+      "相邻领域：自动驾驶与场景仿真": 6,
+      "相邻领域：电池与充电": 2,
+      "商业平台与工程工具": 8,
+      "相关 Awesome Lists 与致谢": 9
+    },
+    "errors": [],
+    "external_http_checked": false
+  },
+  "unit_tests": {
+    "run": 21,
+    "passed": 21,
+    "failed": 0,
+    "scope": "Synthetic regression tests of the catalog checker, not tests of upstream SDV software.",
+    "log": "docs/unit-tests.txt"
+  },
+  "source_hashes": {
+    "README.md": "8fb4f00b8f30f60723b1f3e6d894537e7835c2e948f4c47862ca926857dbfcf4",
+    "scripts/check_catalog.py": "227c2d3d54ab9908f4fe97086822acbe98f57ba2c850361e3519053d4c019f95",
+    "tests/test_check_catalog.py": "d4da6345d27807f5b06268a3e9a9570896591007a06ece2482b3f75eca0d26f5"
+  },
+  "external_http_sweep": "not_run",
+  "github_actions": "not_configured",
+  "upstream_build_or_vehicle_tests": "not_run"
+}
