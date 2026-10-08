@@ -28,15 +28,18 @@ class PublishingTests(unittest.TestCase):
         result = CAT.check_catalog(text, ROOT)
         self.assertTrue(result["ok"], result)
         counts = re.search(r"\*\*(\d+) 项资源，分为 (\d+) 类\*\*", text)
-        self.assertIsNotNone(counts)
-        self.assertEqual(tuple(map(int, counts.groups())),
-                         (result["resource_count"], result["category_count"]))
+        # Visible counters are optional; validate them only when displayed.
+        if counts is not None:
+            self.assertEqual(tuple(map(int, counts.groups())),
+                             (result["resource_count"], result["category_count"]))
 
     def test_legacy_anchors_preserved(self):
         self.assertTrue(LEGACY_ANCHORS <= set(CAT.ANCHOR.findall(read("README.md"))))
 
     def test_document_links_resolve(self):
-        for doc in DOCS:
+        documents = (*DOCS, *(str(p.relative_to(ROOT))
+                                for p in sorted((ROOT / "docs/selection").glob("*.md"))))
+        for doc in documents:
             current = ROOT / doc
             for target in CAT.LINK.findall(CAT.without_fences(read(doc))):
                 with self.subTest(document=doc, link=target):

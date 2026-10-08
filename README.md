@@ -4,7 +4,7 @@
 
 由 [ComfortUni（适宇科技）](https://www.comfortuni.com/) 发起和维护，欢迎社区共同整理。按工程用途查找资源，每条提供中文说明和上游链接。
 
-[English](README.en.md) · [入门与术语](docs/START_HERE.md) · [分类目录](#contents) · [转载与署名](ATTRIBUTION.md)
+[English](README.en.md) · [入门与术语](docs/START_HERE.md) · [选型笔记](docs/selection/README.md) · [分类目录](#contents) · [转载与署名](ATTRIBUTION.md)
 
 <a id="start"></a>
 ## 你要找什么？
@@ -62,7 +62,7 @@
 <a id="mcu"></a>
 ## MCU 与实时系统
 
-- [Eclipse OpenBSW](https://github.com/eclipse-openbsw/openbsw) — **开源**。面向 MCU 的 C++ 基础软件，提供生命周期管理、通信组件和参考工程。
+- [Eclipse OpenBSW](https://github.com/eclipse-openbsw/openbsw) — **开源**。MCU C++ 基础软件，提供 POSIX 与 S32K148 参考应用。可先在主机运行通信例子，再接板级驱动；ADC/PWM 等演示依赖相应硬件。[选型笔记](docs/selection/ecu-simulation.md#openbsw)
 - [FreeRTOS](https://github.com/FreeRTOS/FreeRTOS) — **开源**。MCU 实时内核及示例；与采用独立许可和认证材料的安全产品分开看待。
 - [Zephyr](https://github.com/zephyrproject-rtos/zephyr) — **开源**。嵌入式操作系统，包含内核、驱动、协议栈和构建配置体系。
 - [Eclipse ThreadX](https://github.com/eclipse-threadx/threadx) — **开源**。实时内核，提供线程调度、同步、消息队列和内存管理。
@@ -76,14 +76,14 @@
 语言与工具链、任务调度、硬件访问和调试分开列出。Rust 编写的通信组件另见 [DDS](#dds) 和 [进程间通信](#middleware)。
 
 - [The Embedded Rust Book](https://docs.rust-embedded.org/book/) — **文档**。从裸机程序、外设访问和中断入手，介绍嵌入式 Rust 开发。
-- [embedded-hal](https://github.com/rust-embedded/embedded-hal) — **开源**。用 Rust traits 定义硬件抽象接口，让外设驱动与具体芯片解耦。
-- [Embassy](https://github.com/embassy-rs/embassy) — **开源**。嵌入式异步开发框架，提供执行器、定时器、同步原语和多种芯片 HAL。
-- [RTIC](https://github.com/rtic-rs/rtic) — **开源**。以中断和任务优先级组织并发的实时框架，管理任务之间的共享资源。
-- [probe-rs](https://github.com/probe-rs/probe-rs) — **开源**。嵌入式烧录与调试工具集，可通过调试探针访问受支持的目标芯片。
-- [defmt](https://github.com/knurling-rs/defmt) — **开源**。面向嵌入式设备的紧凑日志框架，将格式化工作移到主机端。
-- [CXX](https://github.com/dtolnay/cxx) — **开源**。生成 Rust 与 C++ 之间的类型化接口，便于接入已有 C++ 组件。
-- [Ferrocene](https://github.com/ferrocene/ferrocene) — **开源**。面向安全关键开发的 Rust 工具链；经鉴定的发行包、支持服务和材料见 [Ferrocene](https://ferrocene.dev/)。
-- [HighTec Rust Development Platform](https://hightec-rt.com/rust) — **商业**。车载嵌入式 Rust 编译工具链，可与 C/C++ 工程结合使用；目标架构按产品版本选择。
+- [embedded-hal](https://github.com/rust-embedded/embedded-hal) — **开源**。SPI、I²C、GPIO 等 Rust 硬件接口 traits，让驱动与芯片 HAL 解耦。1.0 主 crate 为阻塞接口，异步、CAN 和字节流接口分属配套 crate。[选型笔记](docs/selection/rust.md#embedded-hal)
+- [Embassy](https://github.com/embassy-rs/embassy) — **开源**。用静态分配的异步任务组织外设等待与通信。同一执行器内任务协作运行，也可用不同优先级执行器实现抢占；适合先按外设示例核对芯片支持。[选型笔记](docs/selection/rust.md#embassy)
+- [RTIC](https://github.com/rtic-rs/rtic) — **开源**。借助中断优先级与 SRP 管理任务和共享资源；v2 也支持异步软件任务。与 Embassy 应比较资源模型和调度方式，而不是“是否异步”。[选型笔记](docs/selection/rust.md#rtic)
+- [probe-rs](https://github.com/probe-rs/probe-rs) — **开源**。通过调试探针烧录、设置断点、访问内存并读取 RTT 日志，也能用于 C 固件。官方概览列出 Arm、RISC-V，具体芯片与探针需查目标支持。[选型笔记](docs/selection/rust.md#probe-rs)
+- [defmt](https://github.com/knurling-rs/defmt) — **开源**。设备发送格式字典索引与参数，主机还原日志，降低字符串传输量。需配套传输与解码器；归档日志时保留对应 ELF 和构建标识。[选型笔记](docs/selection/rust.md#defmt)
+- [CXX](https://github.com/dtolnay/cxx) — **开源**。从类型化桥接声明生成 Rust/C++ 接口，减少手写 FFI，适合逐步接入既有 C++ 模块。检查边界类型，不验证 C++ 函数体内部行为。[选型笔记](docs/selection/rust.md#cxx)
+- [Ferrocene](https://github.com/ferrocene/ferrocene) — **开源**。面向安全关键开发的 Rust 工具链，公开源码及配套文档。选型须将发行版本、目标、运行库和资格材料对应；公开 main 文档是开发预览。[选型笔记](docs/selection/rust.md#ferrocene)
+- [HighTec Rust Development Platform](https://hightec-rt.com/products/rust-development-platform) — **商业**。面向 AURIX、Stellar 的 Rust 工具链，强调与既有 C/C++ 混合开发。适合从目标芯片、ABI、链接与厂商交付范围开始评估。[选型笔记](docs/selection/rust.md#hightec)
 - [Safety-Critical Rust Coding Guidelines](https://github.com/Safety-Critical-Rust-Consortium/safety-critical-rust-coding-guidelines) — **文档**。安全关键 Rust 编码指南，讨论语言特性、规则和示例；工具链鉴定不等于应用已获认证。
 
 <a id="autosar"></a>
@@ -91,7 +91,7 @@
 
 - [AUTOSAR Classic Platform](https://www.autosar.org/standards/classic-platform) — **标准**。嵌入式 ECU 的应用、运行时环境 RTE 和基础软件 BSW 架构规范。
 - [AUTOSAR Adaptive Platform](https://www.autosar.org/standards/adaptive-platform) — **标准**。高性能 ECU 的服务与功能簇规范，可与 Classic 平台共同部署。
-- [Python AUTOSAR](https://github.com/cogu/autosar) — **开源**。用 Python 创建和处理 AUTOSAR 模型与 ARXML 文件，不提供 ECU 运行时。
+- [Python AUTOSAR](https://github.com/cogu/autosar) — **开源**。用 Python 创建和处理 AUTOSAR 模型、生成 ARXML，不提供 ECU 运行时。v0.5 与 v0.4 API 不兼容，旧 ReadTheDocs 教程需与所用版本区分。[选型笔记](docs/selection/ecu-simulation.md#python-autosar)
 - [ETAS RTA-CAR / RTA-HVR](https://www.etas.com/ww/en/products-services/vehicle-software-platform/autosar-classic-profile-rta-car/rta-car-details-integration/) — **商业**。AUTOSAR Classic 基础软件与集成方案；RTA-HVR 为支持硬件虚拟化的 MCU 提供软件分区。
 - [Vector MICROSAR Classic](https://www.vector.com/en/product/microsar-classic/) — **商业**。AUTOSAR Classic 基础软件及配置、集成工具链。
 - [Elektrobit EB tresos](https://www.elektrobit.com/products/ecu/eb-tresos/) — **商业**。ECU 基础软件和配置工具，覆盖 AUTOSAR Classic 工程开发。
@@ -115,10 +115,10 @@ MCU 的 MPU/Guard 分区与 SoC 的 MMU/IOMMU 虚拟化采用不同硬件机制�
 <a id="middleware"></a>
 ## SOME/IP 与进程间通信
 
-- [vsomeip](https://github.com/COVESA/vsomeip) — **开源**。SOME/IP 实现，支持服务发现、请求响应和事件通信。
+- [vsomeip](https://github.com/COVESA/vsomeip) — **开源**。SOME/IP 通信实现，包含配置、服务发现和 E2E 相关库；业务类型生成另接 CommonAPI 等工具。接入从服务标识、载荷编码及对端配置开始。[选型笔记](docs/selection/communication.md#vsomeip)
 - [CommonAPI C++ SOME/IP Runtime](https://github.com/COVESA/capicxx-someip-runtime) — **开源**。CommonAPI C++ 的 SOME/IP 运行时绑定，与接口代码生成工具配合使用。
 - [Eclipse iceoryx](https://github.com/eclipse-iceoryx/iceoryx) — **开源**。以共享内存传递数据的 C++ 进程间通信框架，避免复制消息载荷。
-- [Eclipse iceoryx2](https://github.com/eclipse-iceoryx/iceoryx2) — **开源**。Rust 实现的共享内存通信框架，提供零拷贝 IPC 及其他语言绑定。
+- [Eclipse iceoryx2](https://github.com/eclipse-iceoryx/iceoryx2) — **开源**。Rust 实现的共享内存通信框架，通过借用和传递样本减少同机载荷复制。评估重点是样本生命周期、内存上限及慢消费者行为。[选型笔记](docs/selection/communication.md#iceoryx2)
 - [Eclipse Zenoh](https://github.com/eclipse-zenoh/zenoh) — **开源**。以 Rust 实现的数据通信系统，结合发布订阅、查询和存储。
 - [Eclipse uProtocol Specifications](https://github.com/eclipse-uprotocol/up-spec) — **标准**。跨设备与部署环境的通信协议规范，将接口与底层传输分开。
 - [Eclipse eCAL](https://github.com/eclipse-ecal/ecal) — **开源**。本机及分布式通信中间件，配有监视、记录和回放工具。
@@ -129,21 +129,21 @@ MCU 的 MPU/Guard 分区与 SoC 的 MMU/IOMMU 虚拟化采用不同硬件机制�
 DDS 定义数据分发模型和 QoS；RTPS 定义线上的互操作协议。实现、语言绑定和测试工具分开比较。
 
 - [OMG DDS](https://www.omg.org/spec/DDS/) — **标准**。数据分发服务的官方规范，定义主题、发布订阅和服务质量策略。
-- [RTI Connext Drive](https://www.rti.com/products/connext-drive) — **商业**。面向汽车的 Connext DDS 产品，提供 AUTOSAR Classic、Adaptive 等集成支持。
-- [Eclipse Cyclone DDS](https://github.com/eclipse-cyclonedds/cyclonedds) — **开源**。DDS/RTPS 实现，用于分布式数据发布订阅。
-- [Fast DDS](https://github.com/eProsima/Fast-DDS) — **开源**。eProsima 的 DDS/RTPS 实现，提供数据分发与 QoS 配置。
+- [RTI Connext Drive](https://www.rti.com/products/connext-drive) — **商业**。面向汽车的 Connext DDS 产品及 AUTOSAR 等集成支持。除通信 API 外，比较目标发行、集成组件与支持材料；性能测试另看 Perftest。[选型笔记](docs/selection/communication.md#rti)
+- [Eclipse Cyclone DDS](https://github.com/eclipse-cyclonedds/cyclonedds) — **开源**。DDS/RTPS 实现，官方 HelloWorld 从 IDL、发布者与订阅者展开。可先建立跨主机功能基线，再按相同类型、QoS 与网络条件比较实现。[选型笔记](docs/selection/communication.md#cyclone)
+- [Fast DDS](https://github.com/eProsima/Fast-DDS) — **开源**。DDS/RTPS 实现，提供共享内存传输与 Data-sharing 等同机通路。二者不等同于应用端到端零拷贝；Data-sharing 对类型、内存模式和安全插件有约束。[选型笔记](docs/selection/communication.md#fast-dds)
 - [OpenDDS](https://opendds.org/) — **开源**。以 C++ 实现的 DDS 中间件，另提供 Java 绑定。
-- [RustDDS](https://github.com/Atostek/RustDDS) — **开源**。Atostek 的 Rust DDS 实现，提供同步、异步接口及 ROS 2 通信示例。
-- [Dust DDS](https://github.com/s2e-systems/dust-dds) — **开源**。Rust 原生 DDS 实现，提供类型支持、IDL 代码生成和互操作测试。
-- [Micro XRCE-DDS](https://github.com/eProsima/Micro-XRCE-DDS) — **开源**。通过客户端与 Agent 让资源受限设备接入 DDS 网络，采用 DDS-XRCE 协议。
-- [RTI Perftest](https://github.com/rticommunity/rtiperftest) — **开源**。测量 Connext 通信延迟和吞吐量的命令行程序；构建时需要相应 Connext 库。
+- [RustDDS](https://github.com/Atostek/RustDDS) — **开源**。采用 Rust 风格同步、异步 API 的 DDS 实现。接 ROS 2 时使用独立 ros2-client，而非旧 ros2 模块；先区分需要裸 DDS 还是 ROS 2 节点能力。[选型笔记](docs/selection/communication.md#rustdds)
+- [Dust DDS](https://github.com/s2e-systems/dust-dds) — **开源**。Rust 原生 DDS 实现，提供同步/异步 API、IDL 类型生成与 Shapes 示例。适合拿已有 IDL 检查类型映射、对端互通及所需 QoS。[选型笔记](docs/selection/communication.md#dust-dds)
+- [Micro XRCE-DDS](https://github.com/eProsima/Micro-XRCE-DDS) — **开源**。资源受限端运行 Client，由 Agent 代理接入 DDS 网络。客户端占用、Agent 部署与链路恢复应一起评估，不等同于在 MCU 上运行完整 DDS 节点。[选型笔记](docs/selection/communication.md#micro-xrce)
+- [RTI Perftest](https://github.com/rticommunity/rtiperftest) — **开源**。测量 Connext 吞吐与负载下延迟的程序，构建依赖对应 Connext 库。单向延迟以 RTT/2 估算，不是同步时钟下直接测得的单向时间。[选型笔记](docs/selection/communication.md#perftest)
 
 <a id="vehicle-data"></a>
 ## 车辆数据与应用接口
 
-- [COVESA Vehicle Signal Specification（VSS）](https://github.com/COVESA/vehicle_signal_specification) — **标准**。车辆信号的名称、层次和语义模型，不规定总线传输方式。
+- [COVESA Vehicle Signal Specification（VSS）](https://github.com/COVESA/vehicle_signal_specification) — **标准**。定义车辆信号名称、层次、类型与语义，不规定采集或传输方式。接 CAN 时还需 DBC 到 VSS 的映射及 Provider，服务访问可另看 Kuksa。[选型笔记](docs/selection/communication.md#vss)
 - [VSS Tools](https://github.com/COVESA/vss-tools) — **开源**。校验、转换 VSS 描述，并生成不同格式的数据表示。
-- [Eclipse Kuksa Databroker](https://github.com/eclipse-kuksa/kuksa-databroker) — **开源**。基于 VSS 的车辆信号服务，为应用提供统一的数据访问接口。
+- [Eclipse Kuksa Databroker](https://github.com/eclipse-kuksa/kuksa-databroker) — **开源**。以 gRPC 提供 VSS 信号读写与订阅，底层通过 Provider 连接 CAN 等接口。当前文档区分 VAL v2 与已弃用 v1，示例 CLI 的 API 支持也需配对。[选型笔记](docs/selection/communication.md#kuksa)
 - [Eclipse Kuksa CAN Provider](https://github.com/eclipse-kuksa/kuksa-can-provider) — **开源**。将 CAN 信号映射到 Kuksa 数据服务。
 - [Eclipse Velocitas](https://github.com/eclipse-velocitas) — **开源**。车辆应用 SDK、项目模板和开发工具集合。
 - [Eclipse Autowrx](https://github.com/eclipse-autowrx) — **开源**。用于车辆功能原型开发和体验验证的 digital.auto 相关工具。
@@ -152,8 +152,8 @@ DDS 定义数据分发模型和 QoS；RTPS 定义线上的互操作协议。实�
 ## CAN、以太网与时间同步
 
 - [can-utils](https://github.com/linux-can/can-utils) — **开源**。Linux SocketCAN 命令行工具，支持报文收发、记录和回放。
-- [python-can](https://github.com/hardbyte/python-can) — **开源**。通过统一 Python API 访问多种 CAN 接口，编写采集与测试脚本。
-- [cantools](https://github.com/cantools/cantools) — **开源**。解析 CAN 数据库，编解码报文并生成代码。
+- [python-can](https://github.com/hardbyte/python-can) — **开源**。以统一 Python API 连接多种 CAN 后端，负责编程收发与记录。VirtualBus 可测软件逻辑，但不模拟速率限制或 CAN ID 仲裁；信号编解码另接 cantools。[选型笔记](docs/selection/measurement.md#python-can)
+- [cantools](https://github.com/cantools/cantools) — **开源**。读取 DBC 等数据库，编解码信号并生成 C 消息结构与 pack/unpack 函数。生成物是数据编解码层，不包含 CAN 驱动或任务调度。[选型笔记](docs/selection/measurement.md#cantools)
 - [canmatrix](https://github.com/ebroecker/canmatrix) — **开源**。比较、编辑和转换 CAN 通信矩阵。
 - [Linux PTP](https://www.linuxptp.org/) — **开源**。Linux PTP 时间同步工具，支持硬件与软件时间戳。
 - [IEEE 802.1 TSN Task Group](https://1.ieee802.org/tsn/) — **标准**。时间敏感网络的标准化入口，包含时间同步、流量调度等机制。
@@ -164,10 +164,10 @@ DDS 定义数据分发模型和 QoS；RTPS 定义线上的互操作协议。实�
 
 这一节包含上位机软件及与其配套的接口生态；诊断库和标定软件见 [下一节](#diagnostics)。
 
-- [TSMaster（同星智能）](https://www.tosunai.com/product/tsmaster/) — **商业**。汽车总线分析、仿真和测试软件，支持诊断、刷写、标定与脚本扩展。基础功能可免费下载，专业功能按版本授权。
-- [ZXDoc（致远电子）](https://www.zlg.cn/carbustools/carbustools/product/id/382.html) — **商业**。支持 CAN、CAN FD、LIN 和车载以太网的分析软件，提供 UDS、SOME/IP、XCP/CCP 与 Python 扩展。
-- [INTEWORK-VBA（经纬恒润）](https://www.hirain.com/news_detail/478.html) — **商业**。车辆总线分析工具，覆盖监测、仿真、诊断和标定。
-- [Vector CANoe](https://www.vector.com/en/product/canoe/) — **商业**。网络、ECU 和分布式软件的开发与测试环境，支持仿真和自动化测试。
+- [TSMaster（同星智能）](https://www.tosunai.com/product/tsmaster/) — **商业**。总线分析、仿真与测试软件，可导入 DBC/LDF、用 C/Python 扩展，并记录回放 BLF。试用时按真实数据库、接口卡和诊断/标定授权选件验证。[选型笔记](docs/selection/measurement.md#tsmaster)
+- [ZXDoc（致远电子）](https://www.zlg.cn/carbustools/carbustools/product/id/382.html) — **商业**。配合致远硬件的总线分析软件，提供 Python/API 扩展及 ASC、BLF、MAT、MF4 记录。基于 DBC 信号的 ARXML 需先转成 DBC，迁移时核对语义保留情况。[选型笔记](docs/selection/measurement.md#zxdoc)
+- [INTEWORK-VBA（经纬恒润）](https://intework.hirain.com/) — **商业**。总线分析、诊断与标定工具，配合 TestBase VCI。官方站提供以太网标定、故障定位和 ECUTest 调用教程，可直接评估既有台架的自动化接入。[选型笔记](docs/selection/measurement.md#vba)
+- [Vector CANoe](https://www.vector.com/en/product/canoe/) — **商业**。将网络仿真、刺激、诊断和自动化测试组织在一个环境中。已有工程与测试资产可作为选型起点；纯软件测试另有 CANoe4SW 产品范围。[选型笔记](docs/selection/measurement.md#canoe)
 - [BUSMASTER](https://github.com/rbei-etas/busmaster) — **开源**。Windows 上的车辆总线仿真、分析和测试软件。
 - [SavvyCAN](https://github.com/collin80/SavvyCAN) — **开源**。基于 Qt 的跨平台 CAN 分析工具，支持报文记录、可视化和 DBC 解码。
 - [Wireshark](https://www.wireshark.org/) — **开源**。网络抓包与协议分析工具，可用于排查车载以太网通信问题。
@@ -175,10 +175,10 @@ DDS 定义数据分发模型和 QoS；RTPS 定义线上的互操作协议。实�
 <a id="diagnostics"></a>
 ## 诊断、测量与标定
 
-- [udsoncan](https://github.com/pylessard/python-udsoncan) — **开源**。Python UDS 客户端库，用于诊断服务调用和自动化测试。
-- [python-doipclient](https://github.com/jacobschaer/python-doipclient) — **开源**。DoIP 客户端，可与 UDS 库组合使用。
+- [udsoncan](https://github.com/pylessard/python-udsoncan) — **开源**。Python UDS 客户端，通过 connection 接入传输层，DID 编解码由 ECU 数据定义配置。适合从一个只读 DID 验证服务、codec 与超时行为。[选型笔记](docs/selection/measurement.md#udsoncan)
+- [python-doipclient](https://github.com/jacobschaer/python-doipclient) — **开源**。处理 DoIP 发现、连接与路由激活，可通过适配器接 udsoncan。除 IP 外还需 ECU/客户端逻辑地址；当前 TCP 自动重连选项默认关闭。[选型笔记](docs/selection/measurement.md#doip)
 - [odxtools](https://github.com/mercedes-benz/odxtools) — **开源**。读取和处理 ODX 诊断描述，提供诊断数据查询与编解码工具。
-- [asammdf](https://github.com/danielhrisca/asammdf) — **开源**。读取、分析和转换 MDF 测量文件。
+- [asammdf](https://github.com/danielhrisca/asammdf) — **开源**。读取、筛选、裁剪、重采样与导出 MDF 测量记录，用于采集后的批处理。跨采样率合并时应明确插值方式，并保留原始时间轴与转换参数。[选型笔记](docs/selection/measurement.md#asammdf)
 - [XCPlite](https://github.com/vectorgrp/XCPlite) — **开源**。轻量 XCP 实现，为应用增加测量与标定接口。
 - [COVESA DLT Daemon](https://github.com/COVESA/dlt-daemon) — **开源**。车载 Diagnostic Log and Trace 日志服务。
 - [Eclipse OpenSOVD](https://projects.eclipse.org/projects/automotive.opensovd) — **开源**。服务化车辆诊断 SOVD 的实现项目。
@@ -199,13 +199,13 @@ DDS 定义数据分发模型和 QoS；RTPS 定义线上的互操作协议。实�
 <a id="simulation"></a>
 ## 虚拟 ECU 与 SIL/HIL
 
-- [Vector SIL Kit](https://github.com/vectorgrp/sil-kit) — **开源**。连接虚拟 ECU、网络和仿真参与者的通信与协同库。
-- [Eclipse OpenXilEnv](https://github.com/eclipse-openxilenv/openxilenv) — **开源**。在 PC 上运行、测量和测试嵌入式功能的 SIL/HIL 环境。
+- [Vector SIL Kit](https://github.com/vectorgrp/sil-kit) — **开源**。连接虚拟 ECU、网络与模型的通信和仿真协调库，提供生命周期及时间协调。接入的 ECU/物理模型仍需另行提供。[选型笔记](docs/selection/ecu-simulation.md#sil-kit)
+- [Eclipse OpenXilEnv](https://github.com/eclipse-openxilenv/openxilenv) — **开源**。以 SIL 为重点，将控制代码编成主机外部进程，提供变量测量、激励及 A2L/XCP 接口。与执行目标固件机器码的仿真器是不同路径。[选型笔记](docs/selection/ecu-simulation.md#openxilenv)
 - [Eclipse openDuT](https://github.com/eclipse-opendut/opendut) — **开源**。组织分布式测试设备与网络环境，连接不同地点的 ECU 台架。
-- [Renode](https://github.com/renode/renode) — **开源**。基于芯片与外设模型运行嵌入式软件，支持自动化测试。
-- [QEMU](https://www.qemu.org/) — **开源**。系统仿真与虚拟化工具，用于启动和测试目标平台软件；不默认提供周期精确仿真。
-- [Functional Mock-up Interface（FMI）](https://fmi-standard.org/) — **标准**。模型交换与联合仿真接口，以 FMU 封装可交换的模型。
-- [FMPy](https://github.com/CATIA-Systems/FMPy) — **开源**。使用 Python 检查和运行 FMU，支持批量仿真。
+- [Renode](https://github.com/renode/renode) — **开源**。在机器与外设模型上运行嵌入式固件，可用 Robot Framework 自动检查串口、网络等行为。先确认目标模型，再从最小启动测试接入回归。[选型笔记](docs/selection/ecu-simulation.md#renode)
+- [QEMU](https://www.qemu.org/) — **开源**。运行由 CPU、内存和设备组成的目标系统。选型先匹配 machine 与板级设备；支持某一 CPU 架构不等于支持任意同架构 MCU。[选型笔记](docs/selection/ecu-simulation.md#qemu)
+- [Functional Mock-up Interface（FMI）](https://fmi-standard.org/) — **标准**。以 FMU 交换模型的接口规范。ME、CS 与 SE 的求解和调度职责不同；接入前核对 FMI 版本、接口类型及平台二进制。[选型笔记](docs/selection/ecu-simulation.md#fmi)
+- [FMPy](https://github.com/CATIA-Systems/FMPy) — **开源**。用 Python、命令行或 GUI 检查与运行 FMU，适合批量实验和回归。先用 dump 查看接口与变量，再以固定输入运行；原始物理模型需由其他工具提供。[选型笔记](docs/selection/ecu-simulation.md#fmpy)
 - [dSPACE VEOS](https://www.dspace.com/en/inc/home/products/sw/simulation_software/veos.cfm) — **商业**。在 PC 上集成模型、虚拟 ECU 和网络通信的仿真平台。
 - [dSPACE SCALEXIO](https://www.dspace.com/en/inc/home/products/hw/simulator_hardware/scalexio.cfm) — **商业**。由实时计算与 I/O 构成的 HIL 平台，用于 ECU 闭环测试。
 - [NI VeriStand](https://www.ni.com/en-us/shop/product/veristand.html) — **商业**。配置实时测试系统、接入模型与 I/O，并组织 HIL 测试。
@@ -225,16 +225,16 @@ DDS 定义数据分发模型和 QoS；RTPS 定义线上的互操作协议。实�
 <a id="ota"></a>
 ## OTA 与软件更新
 
-- [Uptane](https://uptane.org/) — **标准**。车辆软件更新的安全框架，定义更新元数据与信任关系。
+- [Uptane](https://uptane.org/) — **标准**。以仓库角色、元数据与 ECU 验证规则组织车辆更新的信任关系。解决哪些更新可被信任，下载、Flash 写入和启动切换由具体实现承担。[选型笔记](docs/selection/updates.md#uptane)
 - [python-tuf](https://github.com/theupdateframework/python-tuf) — **开源**。The Update Framework 的 Python 实现，提供安全更新元数据处理。
-- [RAUC](https://github.com/rauc/rauc) — **开源**。嵌入式 Linux 更新框架，管理签名更新包和系统安装。
-- [SWUpdate](https://github.com/sbabic/swupdate) — **开源**。可配置的嵌入式更新框架，支持不同存储布局与安装处理器。
+- [RAUC](https://github.com/rauc/rauc) — **开源**。围绕签名 bundle、slot 和引导程序集成组织 Linux 更新。安装完成后仍需应用健康确认，回退由引导与确认策略共同实现。[选型笔记](docs/selection/updates.md#rauc)
+- [SWUpdate](https://github.com/sbabic/swupdate) — **开源**。用 sw-description 和 handler 描述、执行多类安装任务，适合定制更新流程。签名、硬件兼容与中断恢复需落实到实际构建和配置。[选型笔记](docs/selection/updates.md#swupdate)
 - [Eclipse hawkBit](https://github.com/eclipse-hawkbit/hawkbit) — **开源**。设备更新包分发与更新管理后端。
 
 <a id="secure-boot"></a>
 ## 安全启动与可信执行
 
-- [MCUboot](https://www.trustedfirmware.org/projects/mcuboot/index.html) — **开源**。MCU 安全引导程序，提供固件验证与升级支持。
+- [MCUboot](https://www.trustedfirmware.org/projects/mcuboot/index.html) — **开源**。MCU 镜像验证与更新引导程序，按模式管理 Flash 槽位。支持试启动的交换流程需应用确认；覆盖式等模式不能笼统视为自动 A/B 回退。[选型笔记](docs/selection/updates.md#mcuboot)
 - [OP-TEE](https://www.trustedfirmware.org/projects/op-tee/) — **开源**。基于 Arm TrustZone 的可信执行环境，将可信应用与普通操作系统分隔。
 
 <a id="orchestration"></a>
