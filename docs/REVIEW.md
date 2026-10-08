@@ -1,68 +1,51 @@
-# 来源与核验说明
+# 来源与补充记录
 
-整理日期：2026-10-08。范围：首次建立 Awesome SDV，不是完整行业普查或可采购产品评测。
+审阅日期：2026-10-08。基线为 [fe7a070](https://github.com/yzy-comfortuni/awesome-sdv/tree/fe7a070ddb5da924efe95e33474a21133081179a)，包含 101 个条目、19 个分类。本轮针对 Rust、DDS、国产工具和开发验证工具的遗漏补充，并重写 README。
 
-## 本轮如何整理
+## 改了什么
 
-先从相关 Awesome Lists 发现分类和候选资源，再阅读项目官方 README、项目网站、标准组织或厂商页面。主清单中每个条目的链接同时也是该条简短说明的上游依据。中文描述重新撰写，没有复制其他清单的完整段落。
+主清单现有 **158 个条目、24 个分类**，净增 **57 个条目**。商业产品移入各自工程分类，不再集中到文末。原来的 `commercial` 锚点保留，指向标签与授权说明；其余原有分类锚点继续保留。
 
-本轮形成 **101 个条目、19 个分类**。其中 9 个条目是相关清单，8 个是单独列出的商业资源；其余 84 个为开源项目、标准、文档与生态入口。数量是维护统计，不是覆盖率或质量排名。
+新增内容按下表归入正文。README 每条的主链接同时是其功能说明的上游入口；表中补充了授权或背景依据。
 
-## 参考清单
+| 方向 | 本轮补充 | 主要来源与处理 |
+| --- | --- | --- |
+| Rust | Embedded Rust Book、embedded-hal、Embassy、RTIC、probe-rs、defmt、CXX、Ferrocene、HighTec、Safety-Critical Rust Coding Guidelines | 官方书籍和各项目仓库；[Ferrocene](https://ferrocene.dev/) 区分源代码与鉴定发行包，[HighTec](https://hightec-rt.com/rust) 标为商业工具链 |
+| DDS | OMG DDS、RTI Connext Drive、OpenDDS、RustDDS、Dust DDS、Micro XRCE-DDS、RTI Perftest | [RTI 产品页](https://www.rti.com/products/connext-drive) 与各项目 README；不把开源 Perftest 的许可扩大到所依赖的 Connext 库 |
+| 总线工具 | TSMaster、ZXDoc、INTEWORK-VBA、BUSMASTER、SavvyCAN、Wireshark | [同星产品页](https://www.tosunai.com/product/tsmaster/) 和 [Professional 授权说明](https://www.tosunai.com/product/tsmaster-professional/)、[致远产品页](https://www.zlg.cn/carbustools/carbustools/product/id/382.html)、[恒润公告](https://www.hirain.com/news_detail/478.html)；不将免费下载写成开源 |
+| 国产基础软件 | RT-Thread、EasyXMen、NeuSAR、INTEWORK-EAS-CP/AP、ORIENTAIS | [EasyXMen 代码仓库](https://atomgit.com/easyxmen/XMen) 标明 LGPL-2.1 和例外条款；[NeuSAR](https://www.neusar.com/) 与 [普华产品目录](https://www.i-soft.com.cn/product/vehicle.html) 提供商业产品说明 |
+| 建模与代码生成 | Capella、PREEvision、Simulink、Embedded Coder、OpenModelica、MWORKS.Sysplorer、APP4MC | 官方产品和项目资料；分别列出模型环境、代码生成和系统架构工具 |
+| 标定与测试 | CANape、INCA、SCALEXIO、VeriStand、INTEWORK-TAE | 厂商产品页；与现有诊断库、VEOS 和 SIL Kit 放在对应分类 |
+| 调试与分析 | TRACE32、VectorCAST、Polyspace、CBMC、Frama-C、Kani、TA Tool Suite | 产品页和项目仓库；测试、静态分析、形式化验证与时序分析不混写为同一能力 |
+| 系统与交付 | QNX SDP、iceoryx、MCUboot、OP-TEE、Buildroot、CycloneDX、OSS Review Toolkit、MISRA | 官方文档与项目入口；保留已有 iceoryx2，两者是独立代码项目 |
+| 相关清单 | Awesome Embedded Rust | 与原有汽车、嵌入式和总线清单交叉检查分类，不整表搬运 |
 
-| 来源 | 参考用途 |
+## 参考清单与写作指南
+
+本轮回读了 [Marcin214/awesome-automotive](https://github.com/Marcin214/awesome-automotive)、[ajay-bhojani/Awesome-Automotive](https://github.com/ajay-bhojani/Awesome-Automotive)、[awesome-canbus](https://github.com/iDoka/awesome-canbus) 和 [Awesome Embedded Rust](https://github.com/rust-embedded/awesome-embedded-rust)。前者的建模、开发和验证分类提示了首版只偏重运行时组件的问题。其余首版参考清单继续保留在 README。
+
+文字参考用户指定的 [Awesome AI Taste](https://github.com/yzy-comfortuni/awesome-ai-taste)，并实际阅读 [Humanizer-zh](https://github.com/op7418/Humanizer-zh/blob/main/SKILL.md) 与 [中文技术文档写作规范：文本](https://github.com/ruanyf/document-style-guide/blob/master/docs/text.md)。删除空泛用途、重复提醒和宣传语，保留会改变选型判断的功能、架构与授权差异。贡献指南加入了条目修改示例。
+
+## 链接修正与访问限制
+
+| 情况 | 处理 |
 | --- | --- |
-| [Marcin214/awesome-automotive](https://github.com/Marcin214/awesome-automotive) | 汽车嵌入式、AUTOSAR、网络、诊断与工程工具分类 |
-| [ajay-bhojani/Awesome-Automotive](https://github.com/ajay-bhojani/Awesome-Automotive) | 汽车工程学习路线与相邻领域查漏 |
-| [jaredthecoder/awesome-vehicle-security](https://github.com/jaredthecoder/awesome-vehicle-security) | 车辆安全研究与授权测试资源 |
-| [nhivp/Awesome-Embedded](https://github.com/nhivp/Awesome-Embedded) | MCU、RTOS 与嵌入式工具链 |
-| [iDoka/awesome-canbus](https://github.com/iDoka/awesome-canbus) | CAN 工具与工程资料 |
-| [iDoka/awesome-linbus](https://github.com/iDoka/awesome-linbus) | LIN 与边缘节点通信 |
-| [manfreddiaz/awesome-autonomous-vehicles](https://github.com/manfreddiaz/awesome-autonomous-vehicles) | 自动驾驶与仿真相邻专题 |
-| [fkromer/awesome-ros2](https://github.com/fkromer/awesome-ros2) | ROS 2 中间件和集成生态 |
-| [sindresorhus/awesome](https://github.com/sindresorhus/awesome) | 清单组织和贡献方式；不表示本仓库已被总目录接收 |
+| Embedded Rust Book 旧地址跳转 | 使用 `docs.rust-embedded.org/book/` |
+| RustDDS 旧个人仓库入口未能读取 | 已读取当前 `Atostek/RustDDS`，使用维护方仓库 |
+| Rust 安全关键指南迁移到 Safety-Critical-Rust-Consortium | 使用当前组织地址，不保留旧重定向入口 |
+| APP4MC、MCUboot、NI VeriStand 页面重定向 | 使用本轮实际返回的项目或产品地址 |
+| 经纬恒润页面直接抓取返回 403 或失败 | 使用检索返回的厂商页面摘要确认产品定位，仅写摘要支持的功能；没有声称读取完整手册 |
+| MWORKS 产品页为动态页面 | 功能说明来自检索返回的同元官方产品页内容；不声称已下载或运行工具 |
+| MISRA 首页直接抓取失败 | 保留官方域名，依据官方检索摘要收录，不写未经核对的最新版本或条文 |
+| 同星 API 的候选 GitHub 地址未读到可核验内容，文档站为动态页面 | 不把猜测的仓库地址写入清单；TSMaster 的脚本能力依据厂商产品说明与培训资料 |
+| Eclipse SommR 的候选资料包含开发计划及 IP 等待说明 | 本轮未作为可直接使用的成熟实现收录，避免把计划当交付物 |
 
-这些清单负责提供发现线索，不替代一手来源。没有机械合并它们的所有链接，也没有复制或镜像其内容。
+## 检查范围
 
-## 重要的一手入口
+本地复原的检查脚本与原测试文件已通过 Git blob SHA-1 对照，确认与基线一致。运行 README 离线检查及 21 项原有回归测试，结果见 [validation.json](validation.json) 和 [unit-tests.txt](unit-tests.txt)。测试验证文档检查器，不验证所收录的 SDV 软件。
 
-[Eclipse SDV 官方项目目录](https://eclipsesdv.org/projects/)用于确认项目归属及集成、运行时、诊断和测试等分工；具体能力尽量回到各自项目文档。
+没有运行全量外部 HTTP 扫描，没有逐一编译上游项目，也没有进行许可法律审查、性能、互操作、台架或实车测试。新条目的来源阅读与原有条目的文字修订分开记录，不能据本次日期推断旧条目已全部重新审计。远端文件的写入结果另以 Git 提交和回读对象为准。
 
-[AOSP SDV](https://source.android.com/docs/automotive/sdv)与[VHAL 文档](https://source.android.com/docs/automotive/vhal)用于区分平台架构和车辆属性接口。[SOAFEE](https://www.soafee.io/)及[EWAOL 参考文档](https://meta-ewaol.docs.soafee.io/en/latest/introduction.html)用于理解云端开发与车端部署路径。
+## 仍需专题补充
 
-[COVESA VSS](https://github.com/COVESA/vehicle_signal_specification)、[uProtocol 规范](https://github.com/eclipse-uprotocol/up-spec)、[Uptane](https://uptane.org/)和[FMI](https://fmi-standard.org/)按规范或框架收录，未误标成完整应用实现。
-
-[ISO 26262 Part 1](https://www.iso.org/standard/68383.html)、[ISO/SAE 21434](https://www.iso.org/standard/70918.html)、[ISO 21448](https://www.iso.org/standard/77490.html)及[VDA QMC Automotive SPICE](https://vda-qmc.de/en/automotive-spice/)使用权利方页面；未下载、复制或分发收费标准正文。
-
-## 链接迁移与访问限制
-
-| 情况 | 本轮处理 |
-| --- | --- |
-| EVerest 的 `EVerest/everest-core` 入口跳转到 `EVerest/EVerest` | README 使用实际跳转后的[仓库地址](https://github.com/EVerest/EVerest) |
-| QNX 的旧 `blackberry.qnx.com` 产品链接跳转到 `qnx.software` | README 使用[新的 Hypervisor 产品页](https://qnx.software/en/software/products-and-solutions/qnx-hypervisor-and-hypervisor-for-safety) |
-| AUTOSAR Classic / Adaptive 官方页面在直接抓取时超时 | 保留官方链接，依据已检索到的官方页面内容描述；不把超时判断为失效，也不标注 HTTP 全量检查通过 |
-| AutoSD 的部分文档域名未能成功读取 | 使用已成功读取的[Eclipse AutoSD 集成项目页](https://projects.eclipse.org/projects/automotive.autosd)，未把未读内容当证据 |
-| UNECE、MISRA 的部分候选入口未成功读取 | 未补写未经本轮核对的版本、适用日期或条文内容，留待后续补充 |
-
-## 核验边界
-
-**已做：** 阅读候选来源，按用途分类，区分代码、规范、文档和商业产品，核对上述迁移，检查 README 格式与重复资源，并测试维护脚本。机器可复核的离线结果见 [validation.json](validation.json)。
-
-**未做：** 对所有上游仓库逐版本进行许可证法律审查、持续维护状态审计、编译、性能测试、互操作测试、台架或实车验证。也没有运行全量外部 HTTP 探测，不能据此声称所有链接始终可访问。
-
-“开源”标签依据上游项目公开定位，不代表其全部依赖、数据或商业配套已完成许可清查。若官方宣传与可取得的交付物存在差异，应在采用前进一步核查。
-
-## 后续补充方向
-
-以下只是待研究的覆盖缺口，不计入已收录资源：
-
-| 方向 | 补充前需要确认 |
-| --- | --- |
-| UNECE R155/R156 与相关中国标准 | 官方正文入口、修订状态、适用范围，避免混用标准与法规 |
-| 安全启动、HSM 固件、密钥与证书生命周期 | 目标平台、可用代码、许可及威胁模型 |
-| 中央计算与区域架构的模型驱动设计 | 可取得的工具、接口及完整示例，而非只有架构宣传图 |
-| AUTOSAR Adaptive 商业实现与国产基础软件 | 可核实产品资料、平台支持和授权边界 |
-| TSN、车载以太网与 MCU 虚拟化的实测资料 | 原始配置、测试方法、硬件条件与失败结果 |
-| 热管理、车身、底盘等控制应用 | 可用参考实现、合法数据、实时性和安全边界 |
-
-没有设定每日凑数更新、自动收录或自动同步上游源码的任务。
+中国汽车标准及 UNECE R155/R156 的现行正文入口、AUTOSAR 之外的车规芯片 SDK 与 HSM 交付物、需求追踪与软件发布管理、车身/底盘/热管理的可运行控制样例，以及总线和虚拟化方案的真实互操作记录，仍值得继续整理。本轮未将这些方向计入已收录条目。

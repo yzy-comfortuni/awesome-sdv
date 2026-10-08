@@ -21,6 +21,6 @@ test_unknown_type (test_check_catalog.CatalogTests.test_unknown_type) ... ok
 test_valid (test_check_catalog.CatalogTests.test_valid) ... ok
 
 ----------------------------------------------------------------------
-Ran 21 tests in 0.006s
+Ran 21 tests in 0.004s
 
 OK
