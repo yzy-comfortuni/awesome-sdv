@@ -1,0 +1,25 @@
+{
+  "repository": "yzy-comfortuni/awesome-sdv",
+  "description": "软件定义汽车 SDV 资源指南 | Software-defined vehicle resources: AUTOSAR, automotive Rust, DDS, CAN tools, SIL/HIL & OTA. Maintained by ComfortUni（适宇科技）.",
+  "topics": [
+    "awesome",
+    "awesome-list",
+    "sdv",
+    "software-defined-vehicle",
+    "automotive",
+    "automotive-software",
+    "autosar",
+    "rust",
+    "embedded",
+    "dds",
+    "someip",
+    "can-bus",
+    "automotive-ethernet",
+    "virtual-ecu",
+    "hil",
+    "sil",
+    "ota",
+    "zonal-architecture",
+    "comfortuni"
+  ]
+}

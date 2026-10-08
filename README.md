@@ -1,29 +1,44 @@
-# Awesome SDV · 软件定义汽车
+# Awesome SDV · 软件定义汽车资源指南
 
-软件定义汽车的开源项目、商业工具、标准和技术资料。覆盖 MCU、区域控制器、中央计算，以及车载软件的开发、测试和更新。
+软件定义汽车（Software-Defined Vehicle，SDV）的开源项目、商业工具、标准和技术资料。覆盖 AUTOSAR、车载 Rust、DDS / SOME/IP、CAN 工具、虚拟 ECU、SIL/HIL 与 OTA。
 
-按工程用途分类，保留英文名称，提供中文说明。商业产品与开源项目放在同一主题下，用标签区分。
+由 [ComfortUni（适宇科技）](https://www.comfortuni.com/) 发起和维护，欢迎社区共同整理。按工程用途查找资源，每条提供中文说明和上游链接。
 
-[贡献指南](CONTRIBUTING.md) · [来源与补充记录](docs/REVIEW.md) · [维护说明](docs/MAINTENANCE.md)
+[English](README.en.md) · [入门与术语](docs/START_HERE.md) · [分类目录](#contents) · [转载与署名](ATTRIBUTION.md)
 
-## 目录
+<a id="start"></a>
+## 你要找什么？
 
-| 平台与开发 | 通信与数据 | 工程与交付 |
-| --- | --- | --- |
-| [架构与生态](#ecosystem) | [SOME/IP 与进程间通信](#middleware) | [总线分析与测试工具](#bus-tools) |
-| [车载操作系统与集成平台](#platforms) | [DDS 与配套工具](#dds) | [诊断、测量与标定](#diagnostics) |
-| [MCU 与实时系统](#mcu) | [车辆数据与应用接口](#vehicle-data) | [建模与代码生成](#modeling) |
-| [Rust 与嵌入式开发](#rust) | [CAN、以太网与时间同步](#networks) | [虚拟 ECU 与 SIL/HIL](#simulation) |
-| [AUTOSAR 与基础软件](#autosar) | [车端编排与车云协同](#orchestration) | [调试、代码分析与时序验证](#verification) |
-| [隔离与虚拟化](#virtualization) | [OTA 与软件更新](#ota) | [构建与软件供应链](#supply-chain) |
-| [座舱与 HMI](#hmi) | [安全启动与可信执行](#secure-boot) | [功能安全与开发规范](#safety) |
+| 正在做的事 | 从这里进入 |
+| --- | --- |
+| 初次了解 SDV，梳理技术栈 | [SDV 入门](docs/START_HERE.md) → [架构与生态](#ecosystem) → [车载操作系统](#platforms) |
+| 开发 MCU、区域控制器或车载 Rust | [MCU 与实时系统](#mcu) · [Rust 工具链](#rust) · [AUTOSAR](#autosar) · [隔离与虚拟化](#virtualization) |
+| 查找 RTI DDS、SOME/IP 或车辆信号接口 | [DDS 实现与工具](#dds) · [SOME/IP 与 IPC](#middleware) · [VSS 与车辆数据](#vehicle-data) |
+| 查找同星、致远、恒润等国产工具 | [TSMaster、ZXDoc、INTEWORK-VBA](#bus-tools) · [国产基础软件](#autosar) · [建模与代码生成](#modeling) |
+| 建立诊断、标定和软件测试环境 | [UDS、DoIP、XCP 与测量](#diagnostics) · [虚拟 ECU 与 SIL/HIL](#simulation) · [调试与代码分析](#verification) |
+| 组织车端部署、更新与软件交付 | [编排与车云协同](#orchestration) · [OTA](#ota) · [安全启动](#secure-boot) · [软件供应链](#supply-chain) |
 
-[自动驾驶与场景仿真](#adas) · [电池与充电](#ev) · [相关清单](#related)
+这些链接是阅读入口，不是经过互操作验证的组合方案。已知项目名可直接用浏览器页内查找。
+
+<a id="contents"></a>
+## 分类目录
+
+**系统平台：** [架构与生态](#ecosystem) · [车载操作系统](#platforms) · [MCU 与实时系统](#mcu) · [隔离与虚拟化](#virtualization)
+
+**语言与应用：** [Rust 与嵌入式开发](#rust) · [AUTOSAR 与基础软件](#autosar) · [车辆数据与应用接口](#vehicle-data) · [座舱与 HMI](#hmi)
+
+**网络与通信：** [SOME/IP 与 IPC](#middleware) · [DDS 与配套工具](#dds) · [CAN、以太网与时间同步](#networks) · [总线分析与测试工具](#bus-tools)
+
+**开发与验证：** [诊断、测量与标定](#diagnostics) · [建模与代码生成](#modeling) · [虚拟 ECU 与 SIL/HIL](#simulation) · [调试、代码分析与时序验证](#verification)
+
+**部署与交付：** [OTA 与软件更新](#ota) · [安全启动与可信执行](#secure-boot) · [车端编排与车云协同](#orchestration) · [构建与软件供应链](#supply-chain) · [功能安全与开发规范](#safety)
+
+**相邻专题：** [自动驾驶与场景仿真](#adas) · [电池与充电](#ev) · [相关清单](#related)
 
 <a id="commercial"></a>
-标签说明：**开源**为代码项目，**商业**为需按厂商条款取得授权的产品，**标准**为规范，**文档**为技术资料，**生态**为组织或项目集合，**清单**为其他资源目录。免费下载不等于开源；开源代码的商业支持、配置工具和认证材料可能另行授权。
+**标签：** 开源 / 商业 / 标准 / 文档 / 生态 / 清单。商业产品与开源项目按用途放在一起；免费下载不等于开源。
 
-选型时请核对具体版本、目标硬件和许可。这里的收录不代表已完成互操作、性能或安全认证验证；通用嵌入式工具也不必然支持某款车规 MCU。
+当前收录 **158 项资源，分为 24 类**。最近一次资源补充：2026-10-08；来源与访问限制见 [补充记录](docs/REVIEW.md)。收录不代表量产推荐，选型仍需核对目标硬件、版本和授权。
 
 <!-- catalog:start -->
 
@@ -291,8 +306,18 @@ DDS 定义数据分发模型和 QoS；RTPS 定义线上的互操作协议。实�
 
 <!-- catalog:end -->
 
+<a id="contributing"></a>
 ## 参与维护
 
-欢迎补充有明确用途的资源，或修正链接与描述。请提供官方来源，并说明它解决什么问题。格式和写作要求见 [贡献指南](CONTRIBUTING.md)。
+欢迎补充资源，或修正链接、分类和描述。请提供官方来源，说明它解决什么问题。参见 [贡献指南](CONTRIBUTING.md)、[维护说明](docs/MAINTENANCE.md) 与 [本轮编辑记录](docs/PUBLISHING.md)。
 
-本仓库原创文字与脚本采用 [MIT License](LICENSE)；上游代码、标准和产品保留各自许可。
+<a id="attribution"></a>
+## 转载与引用
+
+本项目由 **ComfortUni（适宇科技）** 发起和维护，与贡献者共同整理。这里的品牌署名指本清单的整理与说明，不代表对所列第三方项目的所有权或背书。
+
+文档采用 [CC BY 4.0](LICENSE)，允许复制、翻译、改编和商业使用；公开传播时按许可保留署名、来源、许可信息并标明改动。维护脚本与测试代码继续采用 [MIT](LICENSE-CODE)。上游代码、标准和产品另遵循各自许可。
+
+> 转载自 [Awesome SDV · 软件定义汽车资源指南](https://github.com/yzy-comfortuni/awesome-sdv)，由 ComfortUni（适宇科技）及贡献者整理，按 [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) 许可使用。内容按原样转载。
+
+改编或翻译时将最后一句换成实际改动说明。其他署名格式、商标边界和历史 MIT 授权见 [ATTRIBUTION.md](ATTRIBUTION.md)。机器可读引用见 [CITATION.cff](CITATION.cff)。

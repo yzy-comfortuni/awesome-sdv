@@ -1,0 +1,22 @@
+cff-version: 1.2.0
+message: "Cite the resource guide using this metadata; see ATTRIBUTION.md for license scope and reuse examples."
+type: dataset
+title: "Awesome SDV: 软件定义汽车资源指南 / Software-Defined Vehicle Resources"
+authors:
+  - name: "ComfortUni（适宇科技）"
+    website: "https://www.comfortuni.com/"
+  - name: "Awesome SDV contributors"
+url: "https://github.com/yzy-comfortuni/awesome-sdv"
+license: CC-BY-4.0
+abstract: "A curated resource guide to software-defined vehicle projects, commercial tools, standards and documentation. The Chinese README is the complete catalog; README.en.md is an English navigation guide. This citation describes the documentation collection, not the MIT-licensed maintenance code or upstream software."
+keywords:
+  - software-defined vehicle
+  - SDV
+  - automotive software
+  - AUTOSAR
+  - Rust
+  - DDS
+  - SOME/IP
+  - CAN
+  - SIL/HIL
+  - 软件定义汽车

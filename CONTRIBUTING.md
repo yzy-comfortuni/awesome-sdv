@@ -30,6 +30,14 @@
 
 本仓库参考 [Awesome AI Taste](https://github.com/yzy-comfortuni/awesome-ai-taste) 中的 [Humanizer-zh](https://github.com/op7418/Humanizer-zh) 和 [中文技术文档写作规范](https://github.com/ruanyf/document-style-guide)。这些指南用于改善表达，不代替技术核验。
 
+## 阅读与检索
+
+使用项目的正式名称，必要时补充常用缩写或中文厂商名。标题和简介说明真实内容，不为了搜索重复堆放同义词、年份或品牌名。解释性段落应能独立读懂，并链接到来源或对应分类。
+
+新增分类或改变用途时，同步检查首页任务入口、英文导航和导读。保持既有显式锚点；必须迁移时保留旧锚点的有效落点。README 是资源条目的唯一维护入口，不在导读中复制第二份完整清单。
+
+ComfortUni（适宇科技）署名放在首页、引用信息和许可说明中，不放进第三方项目名称，也不暗示品牌拥有或背书这些项目。
+
 ## 提交依据
 
 在 Issue 或 PR 中提供官方链接、支持描述的页面和查阅日期。通过其他清单发现的资源，应注明发现来源，再回到上游核实。开源项目附 LICENSE 入口，商业产品说明授权方式；页面需要登录或抓取受限时如实记录。
@@ -49,4 +57,8 @@ python3 -B -m unittest discover -s tests -v
 
 新增分类时同步修改目录，使用稳定的英文显式锚点，保留 `catalog:start` 和 `catalog:end` 标记。检查范围见 [维护说明](docs/MAINTENANCE.md)。
 
-原创文字与代码按本仓库 MIT License 提交；上游材料仍遵守原许可。
+## 贡献许可
+
+新提交的原创文档、条目说明和汇编贡献按 [CC BY 4.0](LICENSE) 提供；程序代码按 [MIT](LICENSE-CODE) 提供。提交者须有权授予相应许可，各贡献者保留自身权利，不要求转让版权。保留已有署名与第三方许可；本条不追溯改变历史 MIT 贡献的授权。
+
+转载署名与许可边界见 [ATTRIBUTION.md](ATTRIBUTION.md)。

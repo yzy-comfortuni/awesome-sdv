@@ -1,10 +1,9 @@
 {
   "review_date": "2026-10-08",
-  "revision": "coverage-and-editorial-pass",
-  "base_commit": "fe7a070ddb5da924efe95e33474a21133081179a",
-  "readme_bytes": 29078,
-  "readme_git_blob_sha1": "bb4f8d6277fab8ca1fd876179e52868527ea29ef",
+  "revision": "reader-discovery-attribution",
+  "base_commit": "bc4d96068e3d76d61bc59e7d0b73367e2cbfd943",
   "python_version": "3.13.5",
+  "readme_git_blob_sha1": "f7309f76cd175384911cc466ef745feb07673057",
   "catalog_check": {
     "ok": true,
     "resource_count": 158,
@@ -46,34 +45,65 @@
     "errors": [],
     "external_http_checked": false
   },
-  "delta": {
-    "base_resource_count": 101,
-    "current_resource_count": 158,
-    "net_new_resources": 57,
-    "base_category_count": 19,
-    "current_category_count": 24
-  },
-  "original_19_anchors_preserved": true,
-  "checker_matches_base_blob": true,
-  "tests_match_base_blob": true,
+  "baseline_readme_reconstructed_blob_matches": true,
+  "catalog_body_byte_identical_to_baseline": true,
+  "baseline_explicit_anchor_count": 25,
+  "all_baseline_anchors_preserved": true,
+  "original_checker_blob_matches": true,
+  "original_tests_blob_matches": true,
+  "mit_license_original_bytes_preserved": true,
   "unit_tests": {
-    "run": 21,
-    "passed": 21,
+    "run": 30,
+    "passed": 30,
     "failed": 0,
     "log": "docs/unit-tests.txt",
-    "scope": "Synthetic regression tests of the catalog checker; not upstream SDV software."
+    "scope": "21 synthetic catalog-checker tests and 9 navigation/attribution asset tests; not tests of upstream SDV software."
   },
-  "source_hashes": {
-    "README.md": "d9c3beecfe9dde9312e019275244bf0834f223ef040a33b94dfeecc7965bd663",
-    "CONTRIBUTING.md": "b90bf33a2257e4d43f85565c47ef3aebd4d0c708568b5ade754b2b7644a171b4",
-    "docs/REVIEW.md": "cdbc20131f54a1c00c97589be6c2f869361ceaf5fac7da3fad5dba59de59d01b",
-    "docs/MAINTENANCE.md": "7817e584e04ea0da7099fafb35de96b73bbb37024c0403812493c116fcd6b4ef",
-    "scripts/check_catalog.py": "227c2d3d54ab9908f4fe97086822acbe98f57ba2c850361e3519053d4c019f95",
-    "tests/test_check_catalog.py": "d4da6345d27807f5b06268a3e9a9570896591007a06ece2482b3f75eca0d26f5",
-    "docs/unit-tests.txt": "9ad537c94ee3c4d647286953556fef3c46c0d220a9fbf13a76c7edffad0196d5"
+  "first_test_attempt": {
+    "run": 22,
+    "passed": 21,
+    "errors": 1,
+    "cause": "SyntaxError: unmatched closing parenthesis in new test_publishing.py; corrected before the successful run.",
+    "log": "docs/unit-tests-first.txt"
   },
-  "manual_source_review": "New entries and selected migrations; access limitations documented in docs/REVIEW.md. Existing entries were not all re-audited.",
+  "citation": {
+    "yaml_parsed": true,
+    "core_fields_checked": true,
+    "full_official_cff_schema_validation": false,
+    "github_citation_ui_verified": false
+  },
+  "repository_metadata": {
+    "description_applied": false,
+    "topics_applied": false,
+    "pending_values": ".github/repository-metadata.json",
+    "reason": "No repository-settings write action in available connector; local network/gh unavailable."
+  },
+  "publication": {
+    "github_pages_deployed": false,
+    "search_indexing_requested": false,
+    "search_ranking_measured": false,
+    "ai_citation_rate_measured": false
+  },
+  "manual_source_review": "SEO and licensing primary sources; brand website and selected introductory references. Existing resource descriptions preserved, not re-audited.",
   "external_http_sweep": "not_run",
   "github_actions": "not_configured",
-  "upstream_build_or_vehicle_tests": "not_run"
+  "upstream_build_or_vehicle_tests": "not_run",
+  "source_hashes": {
+    "README.md": "4f2950ca0ff743842da70ff7f05c2add9fd18f3d16d764b67970562043b514c3",
+    "README.en.md": "30fa2716715568c6fd690f6235cade155aa7f55e556d8564c82ebdea039224fd",
+    "CONTRIBUTING.md": "9d3747e41a2b6ef4a87fe42917b4d0d6d5b0a5f3f27d6cb30b71b4dd66bbf29d",
+    "ATTRIBUTION.md": "bc7d6f9fa65242c645490e71ccb3c41748af40ca48e9c2a293eb5135b7065f99",
+    "CITATION.cff": "d2bd1731c91ad0ed73a1b241a3564dd7ebd89830df272865acf0083f04e61c24",
+    "LICENSE": "419896aea50c15d6e40c5b4baf4bd346f78223b9a354c7357ad00262afdc08ec",
+    "LICENSE-CODE": "0823a10d2ee7a100d30cebdbb099e74abe634fb95067b575782c1099374d5442",
+    "scripts/LICENSE": "0823a10d2ee7a100d30cebdbb099e74abe634fb95067b575782c1099374d5442",
+    "tests/LICENSE": "0823a10d2ee7a100d30cebdbb099e74abe634fb95067b575782c1099374d5442",
+    "tests/test_publishing.py": "7f9136d2bf304c5a7406bd669bf0249952b465294eefb66d7051b6a23ab913b4",
+    "docs/START_HERE.md": "091c36dd26cf62201fa8bcf35e03ef959b42190dae5663f5744639a3d37d9aff",
+    "docs/MAINTENANCE.md": "efbb050caeb0ade5cbd7d2655099f2e647617f5b232efe44a8bc10acf38a5d65",
+    "docs/PUBLISHING.md": "60f3698e4bc9c50c7a7a796ac17880cb22f4deba2ecdabed5a60c79bcaaa9591",
+    ".github/repository-metadata.json": "51a5da462c9403eb6fa684a946dc3e91fbc122ff3130d04f56042ecd2531ed02",
+    "docs/unit-tests.txt": "2c7d11cbd3b74efa84e1d2cc8b78ec11c1700cc6ac5604365bec4157b208b58e",
+    "docs/unit-tests-first.txt": "c4f789a471369c3739ecbc90454c8c3ac567ce6e9e083f6b5084da89297d77bc"
+  }
 }

@@ -19,17 +19,25 @@ test_require_https (test_check_catalog.CatalogTests.test_require_https) ... ok
 test_reversed_markers (test_check_catalog.CatalogTests.test_reversed_markers) ... ok
 test_unknown_type (test_check_catalog.CatalogTests.test_unknown_type) ... ok
 test_valid (test_check_catalog.CatalogTests.test_valid) ... ok
-test_brand_and_source_are_visible (test_publishing.PublishingTests.test_brand_and_source_are_visible) ... ok
-test_citation_fields_without_claiming_full_schema_validation (test_publishing.PublishingTests.test_citation_fields_without_claiming_full_schema_validation) ... ok
-test_code_license_preserves_original_notice (test_publishing.PublishingTests.test_code_license_preserves_original_notice) ... ok
-test_content_license_and_historical_boundary (test_publishing.PublishingTests.test_content_license_and_historical_boundary) ... ok
-test_document_links_resolve (test_publishing.PublishingTests.test_document_links_resolve) ... ok
-test_legacy_anchors_preserved (test_publishing.PublishingTests.test_legacy_anchors_preserved) ... ok
-test_pending_metadata_is_well_formed (test_publishing.PublishingTests.test_pending_metadata_is_well_formed) ... ok
-test_reader_tables_are_two_columns (test_publishing.PublishingTests.test_reader_tables_are_two_columns) ... ok
-test_readme_counts_match_catalog (test_publishing.PublishingTests.test_readme_counts_match_catalog) ... ok
+test_publishing (unittest.loader._FailedTest.test_publishing) ... ERROR
+
+======================================================================
+ERROR: test_publishing (unittest.loader._FailedTest.test_publishing)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: test_publishing
+Traceback (most recent call last):
+  File "/usr/lib/python3.13/unittest/loader.py", line 396, in _find_test_path
+    module = self._get_module_from_name(name)
+  File "/usr/lib/python3.13/unittest/loader.py", line 339, in _get_module_from_name
+    __import__(name)
+    ~~~~~~~~~~^^^^^^
+  File "/mnt/data/awesome-sdv/tests/test_publishing.py", line 36
+    self.assertTrue(LEGACY_ANCHORS <= set(CAT.ANCHOR.findall(read("README.md")))))
+                                                                                 ^
+SyntaxError: unmatched ')'
+
 
 ----------------------------------------------------------------------
-Ran 30 tests in 0.051s
+Ran 22 tests in 0.014s
 
-OK
+FAILED (errors=1)
